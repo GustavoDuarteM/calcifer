@@ -3,20 +3,21 @@
 module Calcifer
   module Finders
     class SpecFilesRelatedFinder
-      attr_reader :related_files_spec
+      attr_reader :related_spec_files
 
       def initialize(modules)
         @modules = modules
       end
 
       def execute
-        @related_files_spec = specs_to_related_files.join(' ').strip
+        @related_spec_files = specs_to_related_files.join(' ').strip
       end
 
       private
 
       def related_files_path
-        `grep -Rlw '#{@modules.join('\\|')}' ./app`
+        module_names = @modules.join('\\|')
+        `grep -Rlw '#{module_names}' ./app`
       end
 
       def specs_to_related_files
