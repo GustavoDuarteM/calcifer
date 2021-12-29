@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gustavo Duarte"]
   spec.email         = ["gustavo_dmuniz@yahoo.com.br"]
 
-  spec.summary       = 'This gem helps to find class test files related to pleading changes in git.'
+  spec.summary       = 'This gem helps to find class test files related to pending changes in git.'
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/GustavoDuarteM/calcifer"
   spec.license       = "MIT"
