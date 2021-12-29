@@ -21,8 +21,8 @@ module Calcifer
       end
 
       private
-
       def build_module_name(file)
+        # TODO add clause to one line defnition as "class Error < StandardError; end"
         module_name = ''
         file.readlines.each do |line|
           if line.strip.match(MODULE_REGEX)&.length&.positive?
