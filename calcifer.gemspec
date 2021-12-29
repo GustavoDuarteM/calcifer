@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Gustavo Duarte"]
   spec.email         = ["gustavo_dmuniz@yahoo.com.br"]
 
-  spec.summary       = 'essa é a minha gema '
+  spec.summary       = 'This gem helps to find class test files related to pleading changes in git.'
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/GustavoDuarteM/calcifer"
   spec.license       = "MIT"
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/GustavoDuarteM/calcifer"
