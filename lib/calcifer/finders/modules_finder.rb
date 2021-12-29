@@ -2,7 +2,7 @@
 
 module Calcifer
   module Finders
-    class MudulesFinder
+    class ModulesFinder
       MODULE_REGEX = /^(module)\s\w+/.freeze
       CLASS_REGEX = /^(class)\s\w+/.freeze
       attr_reader :modules
@@ -21,6 +21,7 @@ module Calcifer
       end
 
       private
+
       def build_module_name(file)
         # TODO add clause to one line defnition as "class Error < StandardError; end"
         module_name = ''
@@ -28,9 +29,11 @@ module Calcifer
           if line.strip.match(MODULE_REGEX)&.length&.positive?
             module_name += "#{line.gsub('module', '').strip}::"
           elsif line.strip.match(CLASS_REGEX)&.length&.positive?
-            return module_name += line.gsub('class', '').gsub(/<(.*)/, '').strip
+            module_name += line.gsub('class', '').gsub(/<(.*)/, '').strip
+            break
           end
         end
+        module_name
       end
     end
   end
