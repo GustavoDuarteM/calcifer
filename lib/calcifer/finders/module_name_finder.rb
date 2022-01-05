@@ -2,30 +2,23 @@
 
 module Calcifer
   module Finders
-    class ModulesFinder
+    class ModuleNameFinder
       MODULE_REGEX = /^(module)\s\w+/.freeze
       CLASS_REGEX = /^(class)\s\w+/.freeze
+      ONE_LINE_CLASS_REGEX = /^(class)\s\w+\s<\s\w+;\s(end)/.freeze
       attr_reader :modules
 
-      def initialize(file_list)
-        @file_list = file_list
-        @modules = []
+      def initialize(file)
+        @file = file
       end
 
       def execute
-        @file_list.each do |file|
-          module_name = build_module_name(file)
-          @modules << module_name if module_name.length.positive?
-        end
-        @modules
-      end
+        return unless @file
 
-      private
-
-      def build_module_name(file)
-        # TODO add clause to one line defnition as "class Error < StandardError; end"
         module_name = ''
-        file.readlines.each do |line|
+        @file.readlines.each do |line|
+          next if line.strip.match(ONE_LINE_CLASS_REGEX)&.length&.positive?
+
           if line.strip.match(MODULE_REGEX)&.length&.positive?
             module_name += "#{line.gsub('module', '').strip}::"
           elsif line.strip.match(CLASS_REGEX)&.length&.positive?
@@ -33,7 +26,8 @@ module Calcifer
             break
           end
         end
-        module_name
+
+        module_name.length.positive? ? module_name : nil
       end
     end
   end

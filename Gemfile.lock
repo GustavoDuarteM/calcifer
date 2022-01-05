@@ -1,13 +1,19 @@
 PATH
   remote: .
   specs:
-    calcifer (0.1.1)
+    calcifer (0.2.1)
+      rgl
 
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.5.0)
+    generator (0.0.1)
+    lazy_priority_queue (0.1.1)
     rake (10.5.0)
+    rgl (0.5.7)
+      lazy_priority_queue (~> 0.1.0)
+      stream (~> 0.5.3)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -21,6 +27,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.3)
+    stream (0.5.3)
+      generator
 
 PLATFORMS
   ruby

@@ -14,6 +14,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/GustavoDuarteM/calcifer"
   spec.license       = "MIT"
 
+  spec.required_ruby_version = '>= 2.6.4'
+
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
@@ -36,6 +38,8 @@ Gem::Specification.new do |spec|
   # spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.executables     = ['calcifer']
   spec.require_paths   = ["lib"]
+
+  spec.add_dependency 'rgl'
 
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "rake", "~> 10.0"
