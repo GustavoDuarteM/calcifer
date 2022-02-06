@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - calcifer.gemspec
+    - spec/fixtures/**
 
 Metrics/ModuleLength:
   Exclude:
