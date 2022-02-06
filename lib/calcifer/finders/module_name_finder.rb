@@ -10,24 +10,44 @@ module Calcifer
 
       def initialize(file)
         @file = file
+        @module_name = []
       end
 
       def execute
         return unless @file
 
-        module_name = ''
         @file.readlines.each do |line|
-          next if line.strip.match(ONE_LINE_CLASS_REGEX)&.length&.positive?
+          next if one_line_class_definition?(line)
 
-          if line.strip.match(MODULE_REGEX)&.length&.positive?
-            module_name += "#{line.gsub('module', '').strip}::"
-          elsif line.strip.match(CLASS_REGEX)&.length&.positive?
-            module_name += line.gsub('class', '').gsub(/<(.*)/, '').strip
+          if module_definition?(line)
+            @module_name << line.gsub('module', '').strip
+          elsif class_definition?(line)
+            @module_name << line.gsub('class', '').gsub(/<(.*)/, '').strip
             break
           end
         end
 
-        module_name.length.positive? ? module_name : nil
+        mount_module_name
+      end
+
+      private
+
+      def one_line_class_definition?(line)
+        line.strip.match(ONE_LINE_CLASS_REGEX)&.length&.positive?
+      end
+
+      def module_definition?(line)
+        line.strip.match(MODULE_REGEX)&.length&.positive?
+      end
+
+      def class_definition?(line)
+        line.strip.match(CLASS_REGEX)&.length&.positive?
+      end
+
+      def mount_module_name
+        return unless @module_name.length.positive?
+
+        @module_name.join('::')
       end
     end
   end
