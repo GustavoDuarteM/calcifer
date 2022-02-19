@@ -7,7 +7,15 @@ module Calcifer
   class Error < StandardError; end
 
   def self.execute
-    file_list = Calcifer::Finders::FilesDiffFinder.new.execute
+    spec_files_path = graph_list_file.map(&:related_files_paths).flatten
+    spec_files_path_list = Calcifer::Finders::SpecFilesRelatedFinder.new(spec_files_path).execute
+
+    printf `echo #{spec_files_path_list}`
+  end
+
+  private
+
+  def graph_list_file
     graph_list_file = file_list.map(&->(file) { Calcifer::Buiders::RootFileBuilder.new(file).build }).compact
 
     graph_list_file.each do |graph|
@@ -15,10 +23,9 @@ module Calcifer
       graph_vertices = related_files.map { |related_file| [graph.file_path, related_file] }
       graph.graph_root.add_edges(*graph_vertices)
     end
+  end
 
-    spec_files_path = graph_list_file.map(&:related_files_paths).flatten
-    spec_files_path_list = Calcifer::Finders::SpecFilesRelatedFinder.new(spec_files_path).execute
-
-    printf `echo #{spec_files_path_list}`
+  def file_list
+    Calcifer::Finders::FilesDiffFinder.new.execute
   end
 end
