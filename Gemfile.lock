@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    calcifer (0.2.1)
+    calcifer (0.3.0)
       rgl
 
 GEM
