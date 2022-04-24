@@ -3,10 +3,8 @@
 module Calcifer
   module Finders
     class FilesBranchDiffFinder
-
-      def initialize
-        # @TODO - adicionar configuração para sinalizar branch master
-        @parent_branch = nil
+      def initialize(branch)
+        @branch = branch
       end
 
       def execute
@@ -16,29 +14,8 @@ module Calcifer
         }).compact
       end
 
-      def git_parent_branch
-        return @parent_branch if @parent_branch.present?
-
-        `git log --pretty=format:'%D' HEAD^ | grep 'origin/' | head -n1 | sed 's@origin/@@' | sed 's@,.*@@'`
-      end
-
-      # def self.git_parent_branch
-      #   `
-      #   git show-branch -a \
-      #   | grep '\*' \
-      #   | grep -v \`git rev-parse --abbrev-ref HEAD\` \
-      #   | head -n1 \
-      #   | sed 's/.*\[\(.*\)\].*/\1/' \
-      #   | sed 's/[\^~].*//'
-      #   `
-      # end
-
-			def git_current_branch
-				`git branch --show-current`
-			end
-
       def git_files
-        `git diff --name-only #{git_parent_branch}...#{git_current_branch}`
+        `git diff --name-only #{@branch}...`
       end
     end
   end
