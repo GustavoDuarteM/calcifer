@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    calcifer (0.3.0)
-      rgl
+    calcifer (0.4.0)
+      rgl (~> 0.5.7)
 
 GEM
   remote: https://rubygems.org/
