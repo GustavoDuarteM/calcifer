@@ -5,7 +5,7 @@ require 'rgl/adjacency'
 
 module Calcifer
   class Error < StandardError; end
-
+  # isso é um teste 
   def self.execute
     spec_files_path = graph_list_file.map(&:related_files_paths).flatten
     spec_files_path_list = Calcifer::Finders::SpecFilesRelatedFinder.new(spec_files_path).execute
