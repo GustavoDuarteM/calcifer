@@ -39,9 +39,10 @@ Gem::Specification.new do |spec|
   spec.executables     = ['calcifer']
   spec.require_paths   = ["lib"]
 
-  spec.add_dependency 'rgl'
+  spec.add_dependency 'rgl', "~>0.5.7"
 
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rubocop", "~> 1.25"
 end
